@@ -1,0 +1,18 @@
+name: ci
+on:
+  push:
+  pull_request:
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: Tidy
+        run: go mod tidy
+      - name: Build
+        run: go build -v ./cmd/rhm
+      - name: Test
+        run: go test -v ./...

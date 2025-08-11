@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--protected-mode", "no"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+volumes:
+  redisdata: {}
